@@ -1,0 +1,29 @@
+{
+  "name": "triangle-reactjs-redux-workshop",
+  "version": "0.1.0",
+  "description": "Redux workshop for Triangle Reactjs",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbelmont/triangle-reactjs-redux-workshop.git"
+  },
+  "keywords": [
+    "React",
+    "Redux",
+    "Node",
+    "Koa"
+  ],
+  "author": "Jean-Marcel Belmont",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jbelmont/triangle-reactjs-redux-workshop/issues"
+  },
+  "homepage": "https://github.com/jbelmont/triangle-reactjs-redux-workshop#readme",
+  "dependencies": {
+    "dotenv": "^2.0.0",
+    "koa": "^1.2.4"
+  }
+}
