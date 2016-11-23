@@ -3,7 +3,7 @@
 const {join} = require('path');
 const winston = require('winston');
 
-const router = require('koa-router')({ prefix: '/api/v1' });
+const router = require('koa-router')();
 
 const db = require(join(__dirname, '../db/db'));
 db.dbActions()
