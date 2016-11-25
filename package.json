@@ -4,9 +4,10 @@
   "description": "Redux workshop for Triangle Reactjs",
   "main": "index.js",
   "scripts": {
-    "gen:vendor:script": "./scripts/generateVendor.sh",
-    "predev": "npm run gen:vendor:script && webpack",
-    "dev": "node --harmony app.js"
+    "clean:build": "rimraf ./static/build",
+    "predev": "npm run clean:build",
+    "dev": "gulp dev",
+    "build": "npm run clean:build && gulp build"
   },
   "repository": {
     "type": "git",
@@ -25,14 +26,13 @@
   },
   "homepage": "https://github.com/jbelmont/triangle-reactjs-redux-workshop#readme",
   "dependencies": {
-    "co": "^4.6.0",
+    "body-parser": "^1.15.2",
+    "consolidate": "^0.14.5",
+    "cookie-parser": "^1.4.3",
     "dotenv": "^2.0.0",
-    "koa": "^2.0.0",
-    "koa-bodyparser": "^2.3.0",
-    "koa-convert": "^1.2.0",
-    "koa-router": "^5.4.0",
-    "koa-views": "^5.2.0",
-    "koa-webpack": "^0.1.9",
+    "express": "^4.14.0",
+    "hbs": "^4.0.1",
+    "morgan": "^1.7.0",
     "object-assign": "^4.1.0",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
@@ -42,6 +42,9 @@
     "redux": "^3.6.0",
     "request": "^2.79.0",
     "rethinkdb": "^2.3.3",
+    "rimraf": "^2.5.4",
+    "run-sequence": "^1.2.2",
+    "serve-favicon": "^2.3.2",
     "winston": "^2.3.0"
   },
   "devDependencies": {
@@ -61,7 +64,16 @@
     "react-test-renderer": "^15.4.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
-    "webpack": "^2.1.0-beta.26",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^1.13.3",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.9.1",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "merge-stream": "^1.0.1"
   }
 }

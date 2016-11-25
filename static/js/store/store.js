@@ -1,26 +1,19 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { syncHistoryWithStore} from 'react-router-redux';
 import { browserHistory } from 'react-router';
 
 import {ajax} from '../utils/ajax.js';
 import rootReducer from '../reducers/index';
+import data from '../data/data';
 
-function getUsersRequest() {
+function getStateObject(users) {
   return {
-      type: 'GET',
-      route: '/api/v1/users'
-    }
-}
-
-function getStateObject() {
-  const getUsers = getUsersRequest();
-  return ajax(getUsers)
-    .then(users)
-    .catch(err);
+    users
+  };
 }
 
 // create an object for the default data
-const defaultState = getStateObject();
+const defaultState = getStateObject(data.users);
 const store = createStore(rootReducer, defaultState);
 
 export const history = syncHistoryWithStore(browserHistory, store);

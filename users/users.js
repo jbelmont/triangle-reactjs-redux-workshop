@@ -1,26 +1,24 @@
-"use strict";
+'use strict';
 
-const {join} = require('path');
+const express = require('express');
+const router = express.Router();
+const path = require('path');
 const winston = require('winston');
 
-const router = require('koa-router')();
 
-const db = require(join(__dirname, '../db/db'));
-db.dbActions()
-    .then(values => {
-        const data = {
-            users: JSON.stringify(values)
-        };
-        
-        router
-            .get('/', function* () {
-                this.body = 'Triangle ReactJS Users Group.';
-            });
-
-        router.
-            get('/api/v1/users', function* () {
-                this.body = data;
-            });
-    });
+// router.post('/receivePayment', (req, res, next) => {
+//     const {
+//         stripeToken, 
+//         amount
+//     } = req.body;
+//     return stripe.charges.create({
+//         amount,
+//         currency: "usd",
+//         source: stripeToken,
+//         description: "Menu Item Charge"
+//     })
+//     .then(charge => res.send(charge))
+//     .catch(err => winston.log('error', 'Error Creating Charge for stripe', {err}));
+// });
 
 module.exports = router;

@@ -1,66 +1,71 @@
-"use strict";
+'use strict';
 
-const https = require('https');
-const koa = require('koa');
-const {readFileSync} = require('fs');
-const {join} = require('path');
-const middleware = require('koa-webpack');
-const bodyParser = require('koa-bodyparser');
-const views = require('koa-views');
-const webpack = require('webpack');
-const webpackConfig = require('./webpack.config');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const winston = require('winston');
 
-const compiler = webpack(webpackConfig);
+// Load Environment Variables
+require(path.join(__dirname, 'config/config'))["dotEnv"];
 
-const app =  new koa();
+const routes = require('./routes/index');
+const users = require(path.join(__dirname, 'users/users'));
 
-const users = require(join(__dirname, 'users/users'));
+const app = express();
 
-require(join(__dirname, 'config/config'))["dotEnv"];
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
 
-const options = {
-  key: readFileSync(join(__dirname, 'ca/key.pem')),
-  cert: readFileSync(join(__dirname, 'ca/cert.pem'))
-};
+app.use(favicon(path.join(__dirname, 'static/build', 'favicon.ico')));
+app.use(logger('dev'));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-app.use(views(__dirname + '/views', {
-  map: {
-    hbs: 'handlebars'
-  }
-}));
+app.use(express.static(path.join(__dirname, 'static')));
 
-app.use(async (ctx, next) => {
-  ctx.state = {
-    title: 'Triangle ReactJS Users'
-  };
-  await ctx.render('index.hbs');
+app.use('/', routes);
+app.use('/api/v1/users', users);
+
+/**
+ * catch 404 and forward to error handler
+ */
+app.use((req, res, next) => {
+  let err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+/**
+ * development error handler
+ * will print stacktrace
+ */
+if (app.get('env') === 'development') {
+  app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+/**
+ * production error handler
+ * no stacktraces leaked to user
+ * */ 
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
 
-app.use(bodyParser());
-app.use(users.routes());
-
-app.use(users.allowedMethods());
-
-const webpackDevConfig = {
-  dev: {
-    output: webpackConfig.output,
-    entry: webpackConfig.entry,
-    publicPath: webpackConfig.output.publicPath,
-    stats: {
-      colors: true,
-      chunks: false
-    },
-    watchOptions: {
-        aggregateTimeout: 300,
-        poll: true
-    }
-  }
-};
-app.use(middleware(webpackDevConfig));
-
-https.createServer(
-    options, 
-    app.callback()
-).listen(process.env["PORT"] || 3000);
+module.exports = app;
