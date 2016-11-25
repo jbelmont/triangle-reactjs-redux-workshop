@@ -11,9 +11,16 @@ db.dbActions()
         const data = {
             users: JSON.stringify(values)
         };
-        router.get('/', function* () {
-            this.body = data;
-        });
+        
+        router
+            .get('/', function* () {
+                this.body = 'Triangle ReactJS Users Group.';
+            });
+
+        router.
+            get('/api/v1/users', function* () {
+                this.body = data;
+            });
     });
 
 module.exports = router;

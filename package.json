@@ -4,8 +4,9 @@
   "description": "Redux workshop for Triangle Reactjs",
   "main": "index.js",
   "scripts": {
-    "predev": "webpack",
-    "dev": "node app.js"
+    "gen:vendor:script": "./scripts/generateVendor.sh",
+    "predev": "npm run gen:vendor:script && webpack",
+    "dev": "node --harmony app.js"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "koa-bodyparser": "^2.3.0",
     "koa-convert": "^1.2.0",
     "koa-router": "^5.4.0",
+    "koa-views": "^5.2.0",
     "koa-webpack": "^0.1.9",
     "object-assign": "^4.1.0",
     "react": "^15.4.0",
@@ -54,7 +56,6 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.16.0",
     "eslint": "^3.10.2",
-    "html-webpack-plugin": "^2.24.1",
     "jest": "^17.0.3",
     "node-sass": "^3.13.0",
     "react-test-renderer": "^15.4.0",

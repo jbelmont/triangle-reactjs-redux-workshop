@@ -1,11 +1,12 @@
 "use strict";
 
-require('babel-polyfill');
 const https = require('https');
 const koa = require('koa');
 const {readFileSync} = require('fs');
 const {join} = require('path');
 const middleware = require('koa-webpack');
+const bodyParser = require('koa-bodyparser');
+const views = require('koa-views');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config');
 
@@ -22,11 +23,27 @@ const options = {
   cert: readFileSync(join(__dirname, 'ca/cert.pem'))
 };
 
+
+app.use(views(__dirname + '/views', {
+  map: {
+    hbs: 'handlebars'
+  }
+}));
+
+app.use(async (ctx, next) => {
+  ctx.state = {
+    title: 'Triangle ReactJS Users'
+  };
+  await ctx.render('index.hbs');
+});
+
+
+app.use(bodyParser());
 app.use(users.routes());
 
 app.use(users.allowedMethods());
 
-app.use(middleware({
+const webpackDevConfig = {
   dev: {
     output: webpackConfig.output,
     entry: webpackConfig.entry,
@@ -40,7 +57,8 @@ app.use(middleware({
         poll: true
     }
   }
-}));
+};
+app.use(middleware(webpackDevConfig));
 
 https.createServer(
     options, 

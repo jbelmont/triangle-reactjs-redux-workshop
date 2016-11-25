@@ -10,6 +10,7 @@ class Users extends Component {
   render() {
     return (
       <div className="users-container">
+        <span className="users-container-label">Here are users.</span>
       </div>
     );
   }

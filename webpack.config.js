@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');  
 
 const ROOT_PATH = path.resolve(__dirname);
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -23,7 +22,7 @@ module.exports = {
     port: 3000,
     filename: '[name].js'
   },
-  devtool: '#eval-source-map',
+  devtool: 'source-map',
   module: {
     loaders: [{
       test: /\.jsx?$/,
@@ -42,15 +41,13 @@ module.exports = {
     react: 'React'
   },
   plugins: [
-    // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new (webpack.optimize.OccurenceOrderPlugin || webpack.optimize.OccurrenceOrderPlugin)(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    // https://github.com/ampedandwired/html-webpack-plugin
-    new HtmlWebpackPlugin({
-      filename: path.resolve(ROOT_PATH, 'views/index.html'),
-      template: path.resolve(ROOT_PATH, 'views/index.html'),
-      inject: true
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('development')
+      }
     })
   ]
 };
