@@ -1,0 +1,11 @@
+.users-container {
+    display: flex;
+
+    &-email,
+    &-first-name,
+    &-last-name,
+    &-gender,
+    &-id {
+        width: 100%;
+    }
+}

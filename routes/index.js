@@ -16,7 +16,7 @@ db.dbActions()
   .then(values => {
 
     const data = {
-      recipes: JSON.stringify(values)
+      users: JSON.stringify(values)
     };
 
     /* GET home page. */

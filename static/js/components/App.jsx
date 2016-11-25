@@ -6,15 +6,16 @@ import { Provider } from 'react-redux';
 import store, { history } from '../store/store';
 
 import TriangleReact from './TriangleReact.jsx';
-import Users from './Users.jsx';
+import Main from './Main.jsx';
 
-render(
+const router = (
   <Provider store={store}>
-    <Router history={hashHistory}>
-      <Route path="/" component={TriangleReact}>
-        <IndexRoute component={Users}></IndexRoute>
+    <Router history={history}>
+      <Route path="/" component={Main}>
+        <IndexRoute component={TriangleReact}></IndexRoute>
       </Route>
     </Router>
-  </Provider>,
-  document.getElementById('reduxWorkshopContainer')
+  </Provider>
 );
+
+render(router, document.getElementById('reduxWorkshopContainer'));

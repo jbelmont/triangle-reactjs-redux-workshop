@@ -21,7 +21,7 @@ const jsPaths = [
   'src/js/components/*.js'
 ];
 const sassPaths = [
-  'src/scss/*.scss'
+  'static/scss/*.scss'
 ];
 
 const filesToCopy = [
@@ -76,7 +76,7 @@ gulp.task('build:sass', () => {
       includePaths: ['node_modules']
     }))
     .pipe(autoprefixer({cascade: false}))
-    .pipe(concat('trianglereact.css'))
+    .pipe(concat('triangle-react.css'))
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./static/build'))
     .pipe(livereload());

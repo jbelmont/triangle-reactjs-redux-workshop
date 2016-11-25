@@ -1,0 +1,9 @@
+.triangle-react-container {
+    display: flex;
+    flex-direction: column;
+
+    &-label {
+        width: 100%;
+        padding: 5%;
+    }
+}
