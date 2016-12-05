@@ -5,6 +5,10 @@ const router = express.Router();
 const {join} = require('path');
 const winston = require('winston');
 
+const { 
+  crudAction
+} = require(join(__dirname, '../db/crudOperations'));
+
 /**
  * Setup Database Connection
  * Create Database, table and insert values if necessary
@@ -25,8 +29,15 @@ db.dbActions()
     });
 
     /* Route back to home page. */
-    router.get('/user/:id', function(req, res, next) {
-      res.render('index', data);
+    router.get('/user/:id', (req, res, next) => {
+      return crudAction({
+        method: 'getUserById',
+        id: req.params.id
+      }).then(person => {
+        res.render('index', {
+          users: JSON.stringify(person)
+        });
+      });
     });
   });
 

@@ -23,7 +23,10 @@ function connectToRethinkDBServer() {
             port : DB.port,
             db: DB.DATABASE_NAME
         })
-        .then(connect => connect)
+        .then(connect => {
+          process.env.connection = connect;
+          return connect;
+        })
         .catch((error) => {
             winston.log('error', 'Database Connection Error', {error});
             return error;
