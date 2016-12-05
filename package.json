@@ -7,7 +7,9 @@
     "clean:build": "rimraf ./static/build",
     "predev": "npm run clean:build",
     "dev": "gulp dev",
-    "build": "npm run clean:build && gulp build"
+    "build": "npm run clean:build && gulp build",
+    "test": "jest",
+    "test:action:creators": "jest __test__/actions.test.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,7 @@
     "React",
     "Redux",
     "Node",
-    "Koa"
+    "Express"
   ],
   "author": "Jean-Marcel Belmont",
   "license": "MIT",
