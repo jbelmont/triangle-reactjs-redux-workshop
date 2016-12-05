@@ -1,12 +1,12 @@
 import * as actions from '../static/js/actions/index';
-import * as constants from '../static/js/constants/constants';
+import * as types from '../static/js/constants/constants';
 
 describe('Test Action Creators', () => {
 
     let GET_USERS, ADD_USER_DETAIL_INFO;
     beforeAll(() => {
-        GET_USERS = constants["GET_USERS"];
-        ADD_USER_DETAIL_INFO = constants["ADD_USER_DETAIL_INFO"];
+        GET_USERS = types["GET_USERS"];
+        ADD_USER_DETAIL_INFO = types["ADD_USER_DETAIL_INFO"];
     });
 
     it('getUsers should create an action to get users', () => {
