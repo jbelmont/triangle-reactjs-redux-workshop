@@ -23,6 +23,11 @@ db.dbActions()
     router.get('/', (req, res, next) => {
       res.render('index', data);
     });
+
+    /* Route back to home page. */
+    router.get('/user/:id', function(req, res, next) {
+      res.render('index', data);
+    });
   });
 
 module.exports = router;

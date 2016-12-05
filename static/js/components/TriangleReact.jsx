@@ -28,7 +28,7 @@ class TriangleReact extends Component {
     );
     return (
       <div className="triangle-react-container">
-        <div className="triangle-react-container-label">Triangle ReactJS Users</div>
+        <h2 className="triangle-react-container-label"><strong>Triangle ReactJS Users</strong></h2>
         {UserArea}
       </div>
     );

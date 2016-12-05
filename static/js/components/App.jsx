@@ -7,6 +7,7 @@ import store, { history } from '../store/store';
 
 import TriangleReact from './TriangleReact.jsx';
 import Main from './Main.jsx';
+import UserDetails from './UserDetails.jsx';
 
 const router = (
   <Provider store={store}>
@@ -14,6 +15,7 @@ const router = (
       <Route path="/" component={Main}>
         <IndexRoute component={TriangleReact}></IndexRoute>
       </Route>
+      <Route path="/user/:id" component={UserDetails}></Route>
     </Router>
   </Provider>
 );

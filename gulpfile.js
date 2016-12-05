@@ -104,11 +104,11 @@ gulp.task('watch:js', () => {
     }
     gutil.log('[watch:js]', stats.toString({colors: true, chunks: false}));
   });
-  gulp.watch('src/js/components/*.js', ['uglify:js', 'build:js']);
+  gulp.watch('static/js/components/*.js', ['uglify:js', 'build:js']);
 });
 
 gulp.task('watch:sass', () => {
-  gulp.watch('./src/scss/*.scss', ['build:sass']);
+  gulp.watch('static/scss/*.scss', ['build:sass']);
 });
 
 gulp.task('start', () => {
