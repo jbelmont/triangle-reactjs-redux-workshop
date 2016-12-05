@@ -9,8 +9,9 @@
     "dev": "gulp dev",
     "build": "npm run clean:build && gulp build",
     "test": "jest",
-    "test:action:creators": "jest __test__/actions.test.js",
-    "test:reducers": "jest __test__/reducers.test.js"
+    "test:action:creators": "jest __tests__/actions.test.js",
+    "test:reducers": "jest __tests__/reducers.test.js",
+    "test:userdetails:component": "jest __tests__/userdetails.test.js"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 
-import store from '../store/store';
+// import store from '../store/store';
 import {addUserInfo} from '../actions/index';
 
 const Users = ({ email, first_name, last_name, gender, id }) => {
