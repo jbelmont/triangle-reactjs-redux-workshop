@@ -3,6 +3,7 @@ import { Link, IndexLink } from 'react-router';
 
 import Users from './Users.jsx';
 import ReactModal from './ReactModal.jsx';
+import UserContainer from '../containers/UserFilter.js';
 
 import * as constants from '../constants/constants';
 
@@ -36,6 +37,8 @@ class TriangleReact extends Component {
       modalIsOpen
     } = this.state;
 
+    const { store } = this.context;
+
     const {
       TRIANGLE_REACTJS_USERS,
       ADD_USER
@@ -47,7 +50,8 @@ class TriangleReact extends Component {
               first_name={info["first_name"]}
               last_name={info["last_name"]}
               gender={info["gender"]}
-              id={info["id"]} 
+              id={info["id"]}
+              onClick={this.props.addUserInfo}
             />
         )
     );
@@ -58,10 +62,15 @@ class TriangleReact extends Component {
           <ReactModal modalIsOpen={modalIsOpen} openModal={this._openModal} closeModal={this._closeModal} />
         </div>
         <h2 className="triangle-react-container-label"><strong>{TRIANGLE_REACTJS_USERS}</strong></h2>
+        <UserContainer />
         {UserArea}
       </div>
     );
   }
 }
+
+TriangleReact.childContextTypes = {
+  store: React.PropTypes.object
+};
 
 export default TriangleReact;

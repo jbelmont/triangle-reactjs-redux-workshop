@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import {browserHistory} from 'react-router';
 
-import store from '../store/store';
 import {addUserInfo} from '../actions/index';
 
-const Users = ({ email, first_name, last_name, gender, id }) => {
+const Users = ( { email, first_name, last_name, gender, id, onClick } ) => {
 
   const userDetail = event => {
     const element = Array.from(event.currentTarget.children);
@@ -15,12 +14,12 @@ const Users = ({ email, first_name, last_name, gender, id }) => {
       gender: element.filter(elem => elem["dataset"]["gender"])[0].dataset["gender"],
       id: element.filter(elem => elem["dataset"]["id"])[0].dataset["id"]
     };
-    // store.dispatch(addUserInfo(userDetails));
+    onClick(userDetails);
     browserHistory.push(`/user/${userDetails["id"]}`);
   };
 
   return (
-    <div className="users-container" onClick={userDetail}>
+    <div className="users-container" onClick={event => userDetail(event)}>
         <span data-email={email} className="users-container-email">{email}</span>
         <span data-first-name={first_name} className="users-container-first-name">{first_name}</span>
         <span data-last-name={last_name} className="users-container-last-name">{last_name}</span>

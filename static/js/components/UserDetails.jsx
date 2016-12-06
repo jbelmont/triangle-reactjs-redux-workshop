@@ -20,9 +20,6 @@ const UserDetails = routerInfo => {
         gender = storeInfo["gender"];
         id = storeInfo["id"];
     }
-    const userDetail = event => {
-
-    };
 
     const UserDetailsArea = (
         <div className="user-details-container">
