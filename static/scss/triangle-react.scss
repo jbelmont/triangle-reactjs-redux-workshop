@@ -9,10 +9,48 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 3em;
-            background: #2d2d2d;
-            color: #61dafb;
-            font-weight: 400;
+            height: 5em;
+            background: #2d2d2d !important;
+            margin-bottom: 2%;
+
+            > strong {
+                color: #61dafb !important;
+                font-weight: 400 !important;
+                font-size: 1.75rem;
+            }
+        }
+
+        .add-user-btn-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 1em;
+        }
+
+        .add-user-btn {
+            width: 12rem;
+            height: 3rem;
+            font-size: 1.5rem;
+            font-weight: 500;
         }
     }
+}
+
+// With your styles
+.ModalClass {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: papayawhip;
+}
+
+.OverlayClass {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rebeccapurple;
 }

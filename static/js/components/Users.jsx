@@ -15,7 +15,7 @@ const Users = ({ email, first_name, last_name, gender, id }) => {
       gender: element.filter(elem => elem["dataset"]["gender"])[0].dataset["gender"],
       id: element.filter(elem => elem["dataset"]["id"])[0].dataset["id"]
     };
-    store.dispatch(addUserInfo(userDetails));
+    // store.dispatch(addUserInfo(userDetails));
     browserHistory.push(`/user/${userDetails["id"]}`);
   };
 

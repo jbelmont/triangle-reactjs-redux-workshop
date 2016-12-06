@@ -21,7 +21,8 @@ const jsPaths = [
   'src/js/components/*.js'
 ];
 const sassPaths = [
-  'static/scss/*.scss'
+  'static/scss/*.scss',
+  './node_modules/bulma/css/bulma.css'
 ];
 
 const filesToCopy = [
