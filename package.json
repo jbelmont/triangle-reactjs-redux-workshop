@@ -11,7 +11,7 @@
     "test": "jest",
     "test:action:creators": "jest __tests__/actions.test.js",
     "test:reducers": "jest __tests__/reducers.test.js",
-    "test:userdetails:component": "jest __tests__/userdetails.test.js"
+    "test:users:component": "jest __tests__/users.test.js"
   },
   "repository": {
     "type": "git",

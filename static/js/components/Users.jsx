@@ -3,7 +3,7 @@ import {browserHistory} from 'react-router';
 
 import {addUserInfo} from '../actions/index';
 
-const Users = ( { email, first_name, last_name, gender, id, onClick } ) => {
+const Users = ( { email, first_name, last_name, gender, id, props, onClick } ) => {
 
   const userDetail = event => {
     const element = Array.from(event.currentTarget.children);
@@ -15,7 +15,10 @@ const Users = ( { email, first_name, last_name, gender, id, onClick } ) => {
       id: element.filter(elem => elem["dataset"]["id"])[0].dataset["id"]
     };
     onClick(userDetails);
-    browserHistory.push(`/user/${userDetails["id"]}`);
+    browserHistory.push({
+      pathname: `/user/${userDetails["id"]}`,
+      state: props
+    });
   };
 
   return (
