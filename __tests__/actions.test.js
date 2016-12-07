@@ -45,6 +45,6 @@ describe('Test Action Creators', () => {
             "id": 20,
             "lastName": "Anderson"
         };
-        expect(actions.addUserInfo(addUser)).toEqual(expectedAction);
+        expect(actions.getUserInfo(addUser)).toEqual(expectedAction);
     });
 });

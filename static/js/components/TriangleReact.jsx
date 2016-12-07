@@ -13,11 +13,13 @@ class TriangleReact extends Component {
     super(props);
     this.state = {
       users: this.props.users,
-      showAddPopDown: false
+      showAddPopDown: false,
+      genderValue: 'Male'
     }
     this.togglePopDown = this.togglePopDown.bind(this);
     this.getValidationState = this.getValidationState.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.addUser = this.addUser.bind(this);
   }
 
   togglePopDown() {
@@ -37,6 +39,25 @@ class TriangleReact extends Component {
     this.setState({ value: e.target.value });
   }
 
+  addUser(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const email = document.getElementById('emailInput') && document.getElementById('emailInput').value;
+    const firstName = document.getElementById('firstNameInput') && document.getElementById('firstNameInput').value;
+    const lastName = document.getElementById('lastNameInput') && document.getElementById('lastNameInput').value;
+    const select = document.getElementById('genderSelect');
+    const gender = select.options[select.selectedIndex].value;
+    const id = Math.max.apply(Math, this.state.users.map(user => user["id"])) + 1;
+    const newUser = {
+      email,
+      firstName,
+      lastName,
+      gender,
+      id
+    };
+    this.props.addUserInfo(newUser);
+  }
+
   render() {
 
     const {
@@ -50,7 +71,8 @@ class TriangleReact extends Component {
       ADD,
       CLOSE,
       MALE,
-      FEMALE
+      FEMALE,
+      GENDER
     } = constants;
 
     let FieldGroup, FormInstance;
@@ -66,7 +88,7 @@ class TriangleReact extends Component {
       }
 
       FormInstance = (
-        <form>
+        <form onSubmit={this.addUser}>
           <FieldGroup
             id="emailInput"
             type="email"
@@ -74,7 +96,7 @@ class TriangleReact extends Component {
             placeholder="Enter email"
           />
           <FieldGroup
-            id="firstNameINput"
+            id="firstNameInput"
             type="text"
             label="First Name:"
             placeholder="Enter First Name"
@@ -85,16 +107,14 @@ class TriangleReact extends Component {
             label="Last Name:"
             placeholder="Enter Last Name"
           />
-          <FormGroup>
-            <Radio checked inline readOnly>
-              {MALE}
-            </Radio>
-            {' '}
-            <Radio checked inline readOnly>
-              {FEMALE}
-            </Radio>
-        </FormGroup>
-          <Button bsStyle="primary" bsSize="large">{ADD}</Button>
+          <FormGroup controlId="formControlsSelect">
+            <ControlLabel>{GENDER}</ControlLabel>
+            <FormControl id="genderSelect" componentClass="select" placeholder="select">
+              <option value={MALE}>{MALE}</option>
+              <option value={FEMALE}>{FEMALE}</option>
+            </FormControl>
+          </FormGroup>
+          <Button bsStyle="primary" bsSize="large" type="submit">{ADD}</Button>
         </form>
       );
     }
@@ -107,7 +127,7 @@ class TriangleReact extends Component {
               gender={info["gender"]}
               id={info["id"]}
               props={this.props}
-              onClick={this.props.addUserInfo}
+              onClick={this.props.getUserInfo}
             />
         )
     );
