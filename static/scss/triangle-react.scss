@@ -16,7 +16,7 @@
             > strong {
                 color: #61dafb !important;
                 font-weight: 400 !important;
-                font-size: 1.75rem;
+                font-size: 3.75rem;
             }
         }
 
@@ -24,7 +24,6 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            margin-bottom: 1em;
         }
 
         .add-user-btn {
@@ -34,23 +33,4 @@
             font-weight: 500;
         }
     }
-}
-
-// With your styles
-.ModalClass {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    right: 40px;
-    bottom: 40px;
-    background-color: papayawhip;
-}
-
-.OverlayClass {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rebeccapurple;
 }

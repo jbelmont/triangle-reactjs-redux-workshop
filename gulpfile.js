@@ -22,7 +22,7 @@ const jsPaths = [
 ];
 const sassPaths = [
   'static/scss/*.scss',
-  './node_modules/bulma/css/bulma.css'
+  './node_modules/bootstrap/dist/css/bootstrap.min.css'
 ];
 
 const filesToCopy = [
@@ -32,6 +32,10 @@ const filesToCopy = [
 	},
   {
     src: './node_modules/react-dom/dist/react-dom.min.js',
+		dest: './static/build'
+  },
+  {
+    src: './node_modules/react-bootstrap/dist/react-bootstrap.min.js',
 		dest: './static/build'
   },
   {

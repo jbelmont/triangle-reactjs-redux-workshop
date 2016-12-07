@@ -6,7 +6,10 @@ export const EMPTY_USER_INFO = 'EMPTY_USER_INFO';
 // Component Text Values
 export const TRIANGLE_REACTJS_USERS = 'Triangle ReactJS Users';
 export const ADD_USER = 'Add User';
+export const ADD = 'Add';
 export const CLOSE = 'close';
+export const MALE = 'Male';
+export const FEMALE = 'Female';
 export const ADD_USERS_ENTRY = 'Add all the user information here.';
 export const EMAIL = 'Email: ';
 export const FIRST_NAME = 'First Name: ';
