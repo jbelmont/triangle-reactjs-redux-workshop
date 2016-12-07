@@ -13,23 +13,16 @@ class TriangleReact extends Component {
     super(props);
     this.state = {
       users: this.props.users,
-      showModal: false
+      showAddPopDown: false
     }
-    this.open = this.open.bind(this);
-    this.close = this.close.bind(this);
+    this.togglePopDown = this.togglePopDown.bind(this);
     this.getValidationState = this.getValidationState.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  open() {
+  togglePopDown() {
     this.setState({
-      showModal: true
-    });
-  }
-
-  close() {
-    this.setState({
-        showModal: false
+      showAddPopDown: !this.state.showAddPopDown
     });
   }
 
@@ -48,59 +41,63 @@ class TriangleReact extends Component {
 
     const {
       users,
-      showModal
+      showAddPopDown
     } = this.state;
 
     const {
       TRIANGLE_REACTJS_USERS,
       ADD_USER,
       ADD,
+      CLOSE,
       MALE,
       FEMALE
     } = constants;
 
-    const FieldGroup = ({ id, label, help, ...props }) => {
-      return (
-        <FormGroup controlId={id}>
-          <ControlLabel>{label}</ControlLabel>
-          <FormControl {...props} />
-          {help && <HelpBlock>{help}</HelpBlock>}
+    let FieldGroup, FormInstance;
+    if (showAddPopDown) {
+      FieldGroup = ({ id, label, help, ...props }) => {
+        return (
+          <FormGroup controlId={id}>
+            <ControlLabel>{label}</ControlLabel>
+            <FormControl {...props} />
+            {help && <HelpBlock>{help}</HelpBlock>}
+          </FormGroup>
+        );
+      }
+
+      FormInstance = (
+        <form>
+          <FieldGroup
+            id="emailInput"
+            type="email"
+            label="Email address:"
+            placeholder="Enter email"
+          />
+          <FieldGroup
+            id="firstNameINput"
+            type="text"
+            label="First Name:"
+            placeholder="Enter First Name"
+          />
+          <FieldGroup
+            id="lastNameInput"
+            type="text"
+            label="Last Name:"
+            placeholder="Enter Last Name"
+          />
+          <FormGroup>
+            <Radio checked inline readOnly>
+              {MALE}
+            </Radio>
+            {' '}
+            <Radio checked inline readOnly>
+              {FEMALE}
+            </Radio>
         </FormGroup>
+          <Button bsStyle="primary" bsSize="large">{ADD}</Button>
+        </form>
       );
     }
-
-    const FormInstance = (
-      <form>
-        <FieldGroup
-          id="emailInput"
-          type="email"
-          label="Email address:"
-          placeholder="Enter email"
-        />
-        <FieldGroup
-          id="firstNameINput"
-          type="text"
-          label="First Name:"
-          placeholder="Enter First Name"
-        />
-        <FieldGroup
-          id="lastNameInput"
-          label="text"
-          type="Last Name:"
-          placeholder="Enter Last Name"
-        />
-        <FormGroup>
-          <Radio checked inline readOnly>
-            {MALE}
-          </Radio>
-          {' '}
-          <Radio checked inline readOnly>
-            {FEMALE}
-          </Radio>
-      </FormGroup>
-        <Button bsStyle="primary" bsSize="large">{ADD}</Button>
-      </form>
-    );
 
     const UserArea = (
         users.map(info => 
@@ -118,7 +115,10 @@ class TriangleReact extends Component {
     return (
       <div className="triangle-react-container">
         <div className="add-user-btn-container">
-          <Button bsStyle="primary" bsSize="large" onClick={this.open}>{ADD_USER}</Button>
+          <Button bsStyle="primary" 
+                  bsSize="large" 
+                  onClick={this.togglePopDown}>{!showAddPopDown && ADD_USER || CLOSE}
+          </Button>
         </div>
         {FormInstance}
         <h2 className="triangle-react-container-label"><strong>{TRIANGLE_REACTJS_USERS}</strong></h2>
