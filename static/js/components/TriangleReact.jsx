@@ -74,19 +74,19 @@ class TriangleReact extends Component {
         <FieldGroup
           id="emailInput"
           type="email"
-          label="Email address"
+          label="Email address:"
           placeholder="Enter email"
         />
         <FieldGroup
           id="firstNameINput"
           type="text"
-          label="text"
+          label="First Name:"
           placeholder="Enter First Name"
         />
         <FieldGroup
           id="lastNameInput"
           label="text"
-          type="text"
+          type="Last Name:"
           placeholder="Enter Last Name"
         />
         <FormGroup>
