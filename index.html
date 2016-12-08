@@ -8,9 +8,75 @@
         <div class="reveal">
             <div class="slides">
                 <section>
-					<h4>Code Craftsmanship Saturdays Fourth Session</h4>
+					<h4>Triangle ReactJS Users</h4>
 					<p>Speaker Jean-Marcel Belmont</p>
+					<p>Software Engineer at Genisys</p>
 				</section>
+				<section>
+					<h4>FrontEnd Architecture</h4>
+					<p>React / Redux / React-Router</p>
+				</section>
+				<section>
+					<h4>Redux</h4>
+					<p>Redux is a predictable state container for JavaScript apps.</p>
+				</section>
+				<section>
+					<h4>Action Creators in Redux</h4>
+					<p>Action creators are exactly that—functions that create actions. It's easy to conflate the terms “action” and “action creator,” so do your best to use the proper term.</p>
+				</section>
+				<section>
+					<h4>Action Creators for Redux</h4>
+					<pre><code data-trim class="javascript">
+// Action Creators
+export function getUserInfo({email, firstName, lastName, gender, id}) {
+  return {
+    type: ADD_USER_DETAIL_INFO,
+    email,
+    firstName,
+    lastName,
+    gender,
+    id
+  };
+}
+					</code></pre>
+				</section>   
+				<section>
+					<h4>Reducers</h4>
+					<p>The reducer is a pure function that takes the previous state and an action, and returns the next state.</p>
+				</section>
+				<section>
+					<h4>Reducers in Redux</h4>
+					<pre><code data-trim class="javascript">
+// Reducers
+function users(state = [], action) {
+  const {
+        type,
+        email,
+        firstName,
+        lastName,
+        gender,
+        id
+    } = action;
+  switch(type) {
+    case 'ADD_NEW_USER':
+            return [
+              ...state,
+              {
+                email: email,
+                first_name: firstName,
+                last_name: lastName,
+                gender: gender,
+                id: id
+              }
+            ]
+    default:
+      return state;
+  }
+}
+
+export default users;
+					</code></pre>
+				</section>   
         </div>
 		<script src="lib/js/head.min.js"></script>
         <script src="reveal.js"></script>
