@@ -1,0 +1,9 @@
+/node_modules
+/.env
+/ca
+/rethinkdb_data/
+/npm-debug.log
+/icomoon
+/static/build
+/.vscode
+/jsConfig.json
