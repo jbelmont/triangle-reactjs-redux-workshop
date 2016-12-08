@@ -1,0 +1,24 @@
+{
+  "name": "software-testing",
+  "version": "0.1.0",
+  "description": "Software Testing",
+  "main": "index.js",
+  "scripts": {
+    "prebuild:reveal": "./scripts/clean.sh",
+    "build:reveal": "./scripts/build.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Code-Craftsmanship-Saturdays/software-testing.git"
+  },
+  "author": "Jean-Marcel Belmont",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Code-Craftsmanship-Saturdays/software-testing/issues"
+  },
+  "homepage": "https://github.com/Code-Craftsmanship-Saturdays/software-testing#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "reveal.js": "^3.3.0"
+  }
+}
